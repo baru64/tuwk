@@ -25,7 +25,7 @@ int main()
 	char c;
 	char game_mode = 'M'; // tryb gry
 	char map_file[32];
-	
+	bool input_off = false;
 	while(true) //main loop
 	{
 		switch(game_mode)
@@ -63,11 +63,8 @@ int main()
 							break;
 							case 1:
 								game_mode = 'L';
+								input_off = true;
 								clear();
-								echo();
-								mvprintw(ROW/2,(COL-18)/2,"Enter file name:");
-								mvscanw((ROW/2)+1,(COL-18)/2, "%s", map_file);
-								noecho();
 							break;
 							case 2:
 								game_mode = 'C';
@@ -87,18 +84,20 @@ int main()
 			case 'L':
 				fprintf(LOG_F,"Entered loading screen\n");
 				char custom_map[256];
+				echo();
+				mvprintw(ROW/2,(COL-18)/2,"Enter file name:");
+				mvscanw((ROW/2)+1,(COL-18)/2, "%s", map_file);
+				noecho();
 				fprintf(LOG_F,"map file: %s\n",map_file);
 				
 				try
 				{
-					if(load_map(map_file, STORAGES,&NOS,custom_map))
-					{
-						game_mode = 'G';
-						buff2board(custom_map, BOARD, STORAGES, __PLAYER,LOG_F);
-						fprintf(LOG_F, "custom map buffer loaded into board\n");
-						clear();
-						display_draw_board(BOARD,ROW,COL);
-					}
+					load_map(map_file, STORAGES,&NOS,custom_map);
+					game_mode = 'G';
+					buff2board(custom_map, BOARD, STORAGES, __PLAYER,LOG_F);
+					fprintf(LOG_F, "custom map buffer loaded into board\n");
+					clear();
+					display_draw_board(BOARD,ROW,COL);
 				}
 				catch(...)
 				{
@@ -152,7 +151,8 @@ int main()
 				}
 			break;
 		}
-		c = getch();
+		if(!input_off) c = getch();
+		input_off = false;
 		fprintf(LOG_F, "input:%c\n",c);
 		if(c == 'l')
 		{

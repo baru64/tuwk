@@ -1,0 +1,24 @@
+Controls in menu:
+W,A,S,D, E - enter, L - leave program in any moment
+
+map2file.py - converts 16x16 map to tuwk map file
+usage: map2file.py map_name < map.txt
+
+map template filled with floor:
+w - wall, p - player, s - storage spot, b - box, f - floor
+ffffffffffffffff
+ffffffffffffffff
+ffffffffffffffff
+ffffffffffffffff
+ffffffffffffffff
+ffffffffffffffff
+ffffffffffffffff
+ffffffffffffffff
+ffffffffffffffff
+ffffffffffffffff
+ffffffffffffffff
+ffffffffffffffff
+ffffffffffffffff
+ffffffffffffffff
+ffffffffffffffff
+ffffffffffffffff
