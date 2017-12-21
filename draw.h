@@ -42,8 +42,16 @@ __      ____ _ _ __ ___| |__   ___  _   _ ___  ___  | | _____  ___ _ __   ___ _ 
 */
 
 void display_init(int* row, int* col, int* xpoint, int* ypoint); //ustawianie ncurses
+/*! \brief Ustawia opcje ncurses
+*/
 void display_draw_board(game_object***& board, int row,int col); //rysowanie planszy
+/*! \brief Rysuje plansze
+*/
 void disp_menu(int curs_pos, int row, int col); //rysowanie menu
+/*! \brief Rysuje menu
+*/
 void disp_controls(int row, int col); //rysowanie ekranu sterowania
+/*! \brief Rysuje ekran z sterowaniem
+*/
 #endif
 

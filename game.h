@@ -23,6 +23,8 @@ class game_object
 };
 
 class board_object : public game_object
+/*! \brief Nieaktywne elementy planszy
+*/
 {
 	public:
 	board_object();
@@ -34,37 +36,43 @@ class wall : public board_object
 {
 	public:
 	wall();
-	//bool move(char, game_object***);
+
 };
 
 class floor : public board_object
 {
 	public:
 	floor();
-	//bool move(char, game_object***);//ogarniac definicje te
+
 };
 
 class storage : public board_object
 {
 	public:
 	storage();
-	//bool move(char, game_object***);
+
 };
 
 class active_object : public game_object
+/*! \brief Obiekty aktywne
+*/
 {
 	public:
 	active_object();
 	bool move(char direction, game_object***&);
 };
 
-class pudlo : public active_object //box
+class pudlo : public active_object
+/*! \brief Klasa pudeł
+*/
 {
 	public:
 	pudlo(char a, char b);
 };
 
 class player : public active_object
+/*! \brief Klasa gracza
+*/
 {
 	public:
 	player(char a, char b);
@@ -72,7 +80,13 @@ class player : public active_object
 
 // ######################FUNCTIONS####################
 void buff2board(char* buffer, game_object***& board, game_object**& storages, game_object*& _player,FILE* logg);
+/*! \brief Konwertuje bufor na tablice obiektów gry
+*/
 bool map_solved(game_object**& storages, int* nos);
+/*! \brief Sprawdza czy plansza została rozwiązana
+*/
 bool load_map(char* filename, game_object**& storages, int* nos, char* mapbuff);
+/*! \brief Ładuje mapę z pliku do zmiennej
+*/
 //char* read_progress();
 #endif
